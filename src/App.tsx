@@ -7,9 +7,24 @@ function App() {
   const [schooling, setSchooling] = useState('Médio');
   const [experience, setExperience] = useState('');
 
+  function resetForm() {
+    setName('');
+    setEmail('');
+    setSchooling('Médio')
+    setExperience('')
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    alert(
+      `Nome: ${name}\nE-mail: ${email}\nEscolaridade: ${schooling}\nExperiências: ${experience}`
+    )
+    resetForm();
+  }
+
   return (
     <>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <label>
           Nome:
           <input value={name} onChange={({ target }) => setName(target.value)} type='text' />
